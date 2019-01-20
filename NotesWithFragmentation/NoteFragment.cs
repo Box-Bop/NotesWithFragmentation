@@ -30,12 +30,12 @@ namespace NotesWithFragmentation
             {
                 return null;
             }
-
+            var notes = DatabaseService.GetAllNotes();
             var textView = new TextView(Activity);
             var padding = Convert.ToInt32(TypedValue.ApplyDimension(ComplexUnitType.Dip, 4, Activity.Resources.DisplayMetrics));
             textView.SetPadding(padding, padding, padding, padding);
             textView.TextSize = 24;
-            textView.Text = Shakespeare.Dialogue[NoteId];
+            textView.Text = notes.ToList()[NoteId].ToString();
 
             var scroller = new ScrollView(Activity);
             scroller.AddView(textView);

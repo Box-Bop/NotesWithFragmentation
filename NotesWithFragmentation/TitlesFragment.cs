@@ -25,7 +25,8 @@ namespace NotesWithFragmentation
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
-            ListAdapter = new ArrayAdapter<String>(Activity, Android.Resource.Layout.SimpleListItemActivated1, Shakespeare.Titles);
+            var notes = DatabaseService.GetAllNotes();
+            ListAdapter = new ArrayAdapter<String>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Count());
 
             if (savedInstanceState != null)
             {
