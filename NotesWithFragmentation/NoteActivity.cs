@@ -24,10 +24,10 @@ namespace NotesWithFragmentation
                 Finish();
             }
 
-            var playId = Intent.Extras.GetInt("current_play_id", 0);
-            var playQuoteFrag = NoteFragment.NewInstance(playId);
+            var noteId = Intent.Extras.GetInt("current_note_id", 0);
+            var noteFrag = NoteFragment.NewInstance(noteId);
             FragmentManager.BeginTransaction()
-                            .Add(Android.Resource.Id.Content, playQuoteFrag)
+                            .Add(Android.Resource.Id.Content, noteFrag)
                             .Commit();
         }
     }

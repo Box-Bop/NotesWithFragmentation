@@ -17,10 +17,10 @@ namespace NotesWithFragmentation
     {
         public int NoteId => Arguments.GetInt("current_note_id", 0);
 
-        public static NoteFragment NewInstance(int playId)
+        public static NoteFragment NewInstance(int noteId)
         {
             var bundle = new Bundle();
-            bundle.PutInt("current_note_id", playId);
+            bundle.PutInt("current_note_id", noteId);
             return new NoteFragment { Arguments = bundle };
         }
 
@@ -30,12 +30,11 @@ namespace NotesWithFragmentation
             {
                 return null;
             }
-            var notes = DatabaseService.GetAllNotes();
             var textView = new TextView(Activity);
             var padding = Convert.ToInt32(TypedValue.ApplyDimension(ComplexUnitType.Dip, 4, Activity.Resources.DisplayMetrics));
             textView.SetPadding(padding, padding, padding, padding);
             textView.TextSize = 24;
-            textView.Text = notes.ToList()[NoteId].ToString();
+            textView.Text = DatabaseToArray.NoteContent[NoteId];
 
             var scroller = new ScrollView(Activity);
             scroller.AddView(textView);
