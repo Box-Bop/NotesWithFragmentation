@@ -60,6 +60,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="NoteActivity.cs" />
+    <Compile Include="NoteContentFragment.cs" />
     <Compile Include="NoteFragment.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

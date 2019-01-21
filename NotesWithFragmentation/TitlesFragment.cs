@@ -26,7 +26,12 @@ namespace NotesWithFragmentation
         {
             base.OnActivityCreated(savedInstanceState);
             var notes = DatabaseService.GetAllNotes();
-            ListAdapter = new ArrayAdapter<String>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Count());
+            string[] titlesArray = new string[notes.Count()];
+            for (int i = 0; i < notes.Count(); i++)
+            {
+                titlesArray.Append(notes.ToArray()[i].NoteTitle);
+            }
+            ListAdapter = new ArrayAdapter<String>(Activity, Android.Resource.Layout.SimpleListItemActivated1, titlesArray);
 
             if (savedInstanceState != null)
             {
