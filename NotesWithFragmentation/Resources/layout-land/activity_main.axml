@@ -42,7 +42,7 @@
 				android:layout_height="wrap_content"
 				android:id="@+id/linearLayout2" >
 				<Button
-					android:text="Update"
+					android:text="Edit note"
 					android:layout_width="wrap_content"
 					android:layout_height="match_parent"
 					android:id="@+id/button1" />

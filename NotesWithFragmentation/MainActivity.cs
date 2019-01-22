@@ -7,7 +7,7 @@ using Android.Widget;
 namespace NotesWithFragmentation
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : Activity
+    public class MainActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -16,8 +16,18 @@ namespace NotesWithFragmentation
             DatabaseService.CreateDatabase();
             DatabaseService.CreateTableWithData();
             //var notes = DatabaseService.GetAllNotes();
-            DatabaseToArray.Task();
+            DatabaseToArray.Update();
             SetContentView(Resource.Layout.activity_main);
+            var floatingButton = FindViewById<Android.Support.Design.Widget.FloatingActionButton>(Resource.Id.fab);
+            floatingButton.Click += FloatingButton_Click;
+        }
+
+        private void FloatingButton_Click(object sender, System.EventArgs e)
+        {
+            if (Resources.Configuration.Orientation != Android.Content.Res.Orientation.Landscape)
+            {
+                System.Console.WriteLine("test");
+            }
         }
     }
 }

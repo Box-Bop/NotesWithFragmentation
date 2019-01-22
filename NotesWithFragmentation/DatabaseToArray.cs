@@ -19,12 +19,12 @@ namespace NotesWithFragmentation
         public static List<long> NoteIds = new List<long>();
         public static bool Once = false;
 
-        public static void Task() {
+        public static void Update() {
             if (Once == false)
             {
-                //NoteTitles.Clear();
-                //NoteContent.Clear();
-                //NoteIds.Clear();
+                NoteTitles.Clear();
+                NoteContent.Clear();
+                NoteIds.Clear();
                 var notes = DatabaseService.GetAllNotes();
                 var array = notes.ToArray();
                 for (int i = 0; i < notes.Count(); i++)

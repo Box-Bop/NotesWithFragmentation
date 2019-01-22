@@ -17,6 +17,7 @@ namespace NotesWithFragmentation
     {
         int selectedNoteId;
         bool showingTwoFragments;
+        private long NoteCreationId;
 
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
@@ -77,6 +78,33 @@ namespace NotesWithFragmentation
                 intent.PutExtra("current_note_id", noteId);
                 StartActivity(intent);
             }
+            var deleteButton = Activity.FindViewById<Button>(Resource.Id.button2);
+            var updateButton = Activity.FindViewById<Button>(Resource.Id.button1);
+            
+            if (noteId > DatabaseToArray.NoteIds.Count())
+            {
+                noteId -= 1;
+            }
+            NoteCreationId = DatabaseToArray.NoteIds[noteId];
+            deleteButton.Click += DeleteButton_Click;
+            updateButton.Click += UpdateButton_Click;
+            
+        }
+
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+            var noteTitle = Activity.FindViewById<EditText>(Resource.Id.textInputEditText1);
+            var noteContent = Activity.FindViewById<EditText>(Resource.Id.textInputEditText2);
+            DatabaseService.EditNote(noteTitle.Text, noteContent.Text, NoteCreationId);
+            DatabaseToArray.Once = false;
+            DatabaseToArray.Update();
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            DatabaseService.DeleteNote(NoteCreationId);
+            DatabaseToArray.Once = false;
+            DatabaseToArray.Update();
         }
     }
 }

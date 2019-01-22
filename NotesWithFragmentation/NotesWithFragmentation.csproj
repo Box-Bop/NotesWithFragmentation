@@ -103,7 +103,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\video.png" />
+  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout-land\activity_main.axml">
       <SubType>Designer</SubType>
