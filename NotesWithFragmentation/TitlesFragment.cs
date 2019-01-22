@@ -16,22 +16,26 @@ namespace NotesWithFragmentation
     public class TitlesFragment : ListFragment
     {
         int selectedNoteId;
-
-        public TitlesFragment()
-        {
-            // Being explicit about the requirement for a default constructor.
-        }
+        bool showingTwoFragments;
 
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
-            var notes = DatabaseService.GetAllNotes();
-            Console.WriteLine(DatabaseToArray.NoteTitles.ToString());
-            ListAdapter = new ArrayAdapter<String>(Activity, Android.Resource.Layout.SimpleListItemActivated1, DatabaseToArray.NoteTitles);
+            ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemActivated1, DatabaseToArray.NoteTitles);
 
             if (savedInstanceState != null)
             {
                 selectedNoteId = savedInstanceState.GetInt("current_note_id", 0);
+            }
+
+
+            var quoteContainer = Activity.FindViewById(Resource.Id.playquote_container);
+            showingTwoFragments = quoteContainer != null &&
+                                    quoteContainer.Visibility == ViewStates.Visible;
+            if (showingTwoFragments)
+            {
+                ListView.ChoiceMode = ChoiceMode.Single;
+                ShowNoteContent(selectedNoteId);
             }
         }
 
@@ -43,14 +47,36 @@ namespace NotesWithFragmentation
 
         public override void OnListItemClick(ListView l, View v, int position, long id)
         {
-            ShowNote(position);
+            ShowNoteContent(position);
         }
 
-        void ShowNote(int noteId)
+        void ShowNoteContent(int noteId)
         {
-            var intent = new Intent(Activity, typeof(NoteActivity));
-            intent.PutExtra("current_note_id", noteId);
-            StartActivity(intent);
+            selectedNoteId = noteId;
+            if (showingTwoFragments)
+            {
+                ListView.SetItemChecked(selectedNoteId, true);
+
+                var NoteFragment = FragmentManager.FindFragmentById(Resource.Id.playquote_container) as NoteFragment;
+
+                if (NoteFragment == null || NoteFragment.NoteId != noteId)
+                {
+                    var container = Activity.FindViewById(Resource.Id.playquote_container);
+                    var quoteFrag = NoteFragment.NewInstance(selectedNoteId);
+
+                    FragmentTransaction ft = FragmentManager.BeginTransaction();
+                    ft.Replace(Resource.Id.playquote_container, quoteFrag);
+                    ft.AddToBackStack(null);
+                    ft.SetTransition(FragmentTransit.FragmentFade);
+                    ft.Commit();
+                }
+            }
+            else
+            {
+                var intent = new Intent(Activity, typeof(NoteActivity));
+                intent.PutExtra("current_note_id", noteId);
+                StartActivity(intent);
+            }
         }
     }
 }

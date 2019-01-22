@@ -35,6 +35,10 @@ namespace NotesWithFragmentation
                 newNote.NoteContent = "Make an SQLite note taking app";
                 newNote.PostTime = Convert.ToString(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                 db.Insert(newNote);
+                newNote.NoteTitle = "2nd note";
+                newNote.NoteContent = "Test note";
+                newNote.PostTime = Convert.ToString(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+                db.Insert(newNote);
             }
         }
 
@@ -65,6 +69,11 @@ namespace NotesWithFragmentation
         {
             var table = db.Table<Note>();
             return table;
+        }
+        public static void DeleteAllNotes()
+        {
+            var table = db.Table<Note>();
+            db.DropTable<Note>();
         }
     }
 }

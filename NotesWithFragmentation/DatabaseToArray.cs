@@ -14,14 +14,20 @@ namespace NotesWithFragmentation
 {
     class DatabaseToArray
     {
-        public static string[] NoteTitles = { };
-        public static string[] NoteContent = { };
+        public static List<string> NoteTitles = new List<string>();
+        public static List<string> NoteContent = new List<string>();
+        public static bool Once = false;
 
         public static void Task(SQLite.TableQuery<Note> notes) {
-            for (int i = 0; i < notes.Count(); i++)
+            if (Once == false)
             {
-                NoteTitles.Append(notes.ToArray()[i].NoteTitle);
-                NoteContent.Append(notes.ToArray()[i].NoteContent);
+                var test = notes.ToArray();
+                for (int i = 0; i < notes.Count(); i++)
+                {
+                    NoteTitles.Add(test[i].NoteTitle.ToString());
+                    NoteContent.Add(test[i].NoteContent);
+                }
+                Once = true;
             }
         }
     }
