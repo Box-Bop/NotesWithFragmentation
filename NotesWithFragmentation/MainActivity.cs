@@ -15,8 +15,8 @@ namespace NotesWithFragmentation
             // Set our view from the "main" layout resource
             DatabaseService.CreateDatabase();
             DatabaseService.CreateTableWithData();
-            var notes = DatabaseService.GetAllNotes();
-            DatabaseToArray.Task(notes);
+            //var notes = DatabaseService.GetAllNotes();
+            DatabaseToArray.Task();
             SetContentView(Resource.Layout.activity_main);
         }
     }

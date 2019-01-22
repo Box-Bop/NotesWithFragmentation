@@ -16,16 +16,22 @@ namespace NotesWithFragmentation
     {
         public static List<string> NoteTitles = new List<string>();
         public static List<string> NoteContent = new List<string>();
+        public static List<long> NoteIds = new List<long>();
         public static bool Once = false;
 
-        public static void Task(SQLite.TableQuery<Note> notes) {
+        public static void Task() {
             if (Once == false)
             {
-                var test = notes.ToArray();
+                //NoteTitles.Clear();
+                //NoteContent.Clear();
+                //NoteIds.Clear();
+                var notes = DatabaseService.GetAllNotes();
+                var array = notes.ToArray();
                 for (int i = 0; i < notes.Count(); i++)
                 {
-                    NoteTitles.Add(test[i].NoteTitle.ToString());
-                    NoteContent.Add(test[i].NoteContent);
+                    NoteTitles.Add(array[i].NoteTitle);
+                    NoteContent.Add(array[i].NoteContent);
+                    NoteIds.Add(array[i].Id);
                 }
                 Once = true;
             }
