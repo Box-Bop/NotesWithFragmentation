@@ -32,17 +32,10 @@ namespace NotesWithFragmentation
             }
             var noteTitle = Activity.FindViewById<EditText>(Resource.Id.textInputEditText1);
             var noteContent = Activity.FindViewById<EditText>(Resource.Id.textInputEditText2);
-            var textView = new TextView(Activity);
-            var padding = Convert.ToInt32(TypedValue.ApplyDimension(ComplexUnitType.Dip, 4, Activity.Resources.DisplayMetrics));
-            textView.SetPadding(padding, padding, padding, padding);
-            textView.TextSize = 24;
             noteTitle.Text = DatabaseToArray.NoteTitles[NoteId];
             noteContent.Text = DatabaseToArray.NoteContent[NoteId];
 
-            var scroller = new ScrollView(Activity);
-            scroller.AddView(textView);
-
-            return scroller;
+            return View;
         }
     }
 }
