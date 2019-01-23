@@ -48,7 +48,10 @@ namespace NotesWithFragmentation
 
         public override void OnListItemClick(ListView l, View v, int position, long id)
         {
-            ShowNoteContent(position);
+            if (Resources.Configuration.Orientation == Android.Content.Res.Orientation.Landscape)
+            {
+                ShowNoteContent(position);
+            }
         }
 
         void ShowNoteContent(int noteId)
@@ -81,7 +84,7 @@ namespace NotesWithFragmentation
             var deleteButton = Activity.FindViewById<Button>(Resource.Id.button2);
             var updateButton = Activity.FindViewById<Button>(Resource.Id.button1);
             
-            if (noteId > DatabaseToArray.NoteIds.Count())
+            if (noteId > DatabaseToArray.NoteIds.Count() - 1)
             {
                 noteId -= 1;
             }
@@ -96,14 +99,12 @@ namespace NotesWithFragmentation
             var noteTitle = Activity.FindViewById<EditText>(Resource.Id.textInputEditText1);
             var noteContent = Activity.FindViewById<EditText>(Resource.Id.textInputEditText2);
             DatabaseService.EditNote(noteTitle.Text, noteContent.Text, NoteCreationId);
-            DatabaseToArray.Once = false;
             DatabaseToArray.Update();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             DatabaseService.DeleteNote(NoteCreationId);
-            DatabaseToArray.Once = false;
             DatabaseToArray.Update();
         }
     }

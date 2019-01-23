@@ -17,23 +17,18 @@ namespace NotesWithFragmentation
         public static List<string> NoteTitles = new List<string>();
         public static List<string> NoteContent = new List<string>();
         public static List<long> NoteIds = new List<long>();
-        public static bool Once = false;
 
         public static void Update() {
-            if (Once == false)
+            NoteTitles.Clear();
+            NoteContent.Clear();
+            NoteIds.Clear();
+            var notes = DatabaseService.GetAllNotes();
+            var array = notes.ToArray();
+            for (int i = 0; i < notes.Count(); i++)
             {
-                NoteTitles.Clear();
-                NoteContent.Clear();
-                NoteIds.Clear();
-                var notes = DatabaseService.GetAllNotes();
-                var array = notes.ToArray();
-                for (int i = 0; i < notes.Count(); i++)
-                {
-                    NoteTitles.Add(array[i].NoteTitle);
-                    NoteContent.Add(array[i].NoteContent);
-                    NoteIds.Add(array[i].Id);
-                }
-                Once = true;
+                NoteTitles.Add(array[i].NoteTitle);
+                NoteContent.Add(array[i].NoteContent);
+                NoteIds.Add(array[i].Id);
             }
         }
     }

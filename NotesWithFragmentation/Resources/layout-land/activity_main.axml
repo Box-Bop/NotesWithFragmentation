@@ -11,7 +11,19 @@
         android:id="@+id/titles"
         android:layout_weight="1"
         android:layout_width="0px"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/fab"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom|right"
+		app:srcCompat="@drawable/add_icon"
+		android:backgroundTint="#4F91FF"
+		android:layout_marginRight="15dp"
+		android:layout_marginBottom="15dp"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"/>
+	</fragment>
 
     <FrameLayout android:id="@+id/playquote_container"
             android:layout_weight="1"

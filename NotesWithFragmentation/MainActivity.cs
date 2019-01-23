@@ -3,6 +3,7 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
+using Android.Content;
 
 namespace NotesWithFragmentation
 {
@@ -24,10 +25,8 @@ namespace NotesWithFragmentation
 
         private void FloatingButton_Click(object sender, System.EventArgs e)
         {
-            if (Resources.Configuration.Orientation != Android.Content.Res.Orientation.Landscape)
-            {
-                System.Console.WriteLine("test");
-            }
+            var intent = new Intent(this, typeof(AddNoteClass));
+            StartActivity(intent);
         }
     }
 }
