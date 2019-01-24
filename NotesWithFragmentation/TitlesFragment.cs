@@ -52,6 +52,14 @@ namespace NotesWithFragmentation
             {
                 ShowNoteContent(position);
             }
+            else
+            {
+                var intent = new Intent(Activity, typeof(EditNote));
+                intent.PutExtra("EditTitle", DatabaseToArray.NoteTitles.ToList()[position]);
+                intent.PutExtra("EditContent", DatabaseToArray.NoteContent.ToList()[position]);
+                intent.PutExtra("EditId", DatabaseToArray.NoteIds.ToList()[position]);
+                StartActivity(intent);
+            }
         }
 
         void ShowNoteContent(int noteId)

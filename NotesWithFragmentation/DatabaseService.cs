@@ -57,6 +57,7 @@ namespace NotesWithFragmentation
             editedNote.NoteTitle = newTitle;
             editedNote.NoteContent = newContent;
             editedNote.PostTime = Convert.ToString(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+
             db.Update(editedNote);
         }
 

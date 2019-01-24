@@ -29,6 +29,11 @@ namespace NotesWithFragmentation
             var noteTitle = FindViewById<EditText>(Resource.Id.textInputEditText1);
             var noteContent = FindViewById<EditText>(Resource.Id.textInputEditText2);
             DatabaseService.AddNote(noteTitle.Text, noteContent.Text);
+            noteTitle.Text = "";
+            noteContent.Text = "";
+            var intent = new Intent(this, typeof(MainActivity))
+                .SetFlags(ActivityFlags.ReorderToFront);
+            StartActivity(intent);
         }
     }
 }

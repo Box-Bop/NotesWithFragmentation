@@ -54,12 +54,12 @@
 				android:layout_height="wrap_content"
 				android:id="@+id/linearLayout2" >
 				<Button
-					android:text="Edit note"
+					android:text="Confirm edit"
 					android:layout_width="wrap_content"
 					android:layout_height="match_parent"
 					android:id="@+id/button1" />
 				<Button
-					android:text="Delete"
+					android:text="Delete note"
 					android:layout_width="wrap_content"
 					android:layout_height="match_parent"
 					android:id="@+id/button2" />

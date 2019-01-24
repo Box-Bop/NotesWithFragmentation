@@ -15,7 +15,11 @@ namespace NotesWithFragmentation
 {
     public class NoteFragment : Fragment
     {
-        public int NoteId => Arguments.GetInt("current_note_id", 0);
+        public int NoteId
+        {
+            get => Arguments.GetInt("current_note_id", 0);
+            set { }
+        }
         //private string NewNoteTitle;
         //private string NewNoteContent;
 
@@ -31,6 +35,10 @@ namespace NotesWithFragmentation
             if (container == null)
             {
                 return null;
+            }
+            if (NoteId > DatabaseToArray.NoteIds.Count() - 1)
+            {
+                NoteId -= 1;
             }
             var noteTitle = Activity.FindViewById<EditText>(Resource.Id.textInputEditText1);
             var noteContent = Activity.FindViewById<EditText>(Resource.Id.textInputEditText2);

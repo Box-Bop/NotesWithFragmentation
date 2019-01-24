@@ -59,6 +59,7 @@
     <Compile Include="AddNoteClass.cs" />
     <Compile Include="DatabaseService.cs" />
     <Compile Include="DatabaseToArray.cs" />
+    <Compile Include="EditNote.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="NoteActivity.cs" />
@@ -114,6 +115,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\addnewnote.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\editnote.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
