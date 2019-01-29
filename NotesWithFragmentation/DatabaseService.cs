@@ -20,7 +20,7 @@ namespace NotesWithFragmentation
 
         public static void CreateDatabase()
         {
-            string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "mydatabase.db3");
+            string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "notesWfragmentationDB.db3");
             db = new SQLiteConnection(dbPath);
             db.CreateTable<Note>();
         }
@@ -31,12 +31,16 @@ namespace NotesWithFragmentation
             if (db.Table<Note>().Count() == 0)
             {
                 var newNote = new Note();
-                newNote.NoteTitle = "SQLite notes";
+                newNote.NoteTitle = "SQLite note app";
                 newNote.NoteContent = "Make an SQLite note taking app";
                 newNote.PostTime = Convert.ToString(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                 db.Insert(newNote);
-                newNote.NoteTitle = "2nd note";
+                newNote.NoteTitle = "Make the app look good";
                 newNote.NoteContent = "Test note";
+                newNote.PostTime = Convert.ToString(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+                db.Insert(newNote);
+                newNote.NoteTitle = "Sleep";
+                newNote.NoteContent = "Because you deserve rest";
                 newNote.PostTime = Convert.ToString(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                 db.Insert(newNote);
             }

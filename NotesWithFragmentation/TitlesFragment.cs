@@ -108,12 +108,14 @@ namespace NotesWithFragmentation
             var noteContent = Activity.FindViewById<EditText>(Resource.Id.textInputEditText2);
             DatabaseService.EditNote(noteTitle.Text, noteContent.Text, NoteCreationId);
             DatabaseToArray.Update();
+            Activity.Recreate();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             DatabaseService.DeleteNote(NoteCreationId);
             DatabaseToArray.Update();
+            Activity.Recreate();
         }
     }
 }
