@@ -42,8 +42,16 @@ namespace NotesWithFragmentation
             }
             var noteTitle = Activity.FindViewById<EditText>(Resource.Id.textInputEditText1);
             var noteContent = Activity.FindViewById<EditText>(Resource.Id.textInputEditText2);
-            noteTitle.Text = DatabaseToArray.NoteTitles[NoteId];
-            noteContent.Text = DatabaseToArray.NoteContent[NoteId];
+            try
+            {
+                noteTitle.Text = DatabaseToArray.NoteTitles[NoteId];
+                noteContent.Text = DatabaseToArray.NoteContent[NoteId];
+            }
+            catch (Exception)
+            {
+                noteTitle.Text = "";
+                noteContent.Text = "";
+            }
 
             return View;
         }

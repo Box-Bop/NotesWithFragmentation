@@ -74,13 +74,14 @@ namespace NotesWithFragmentation
                 if (NoteFragment == null || NoteFragment.NoteId != noteId)
                 {
                     var container = Activity.FindViewById(Resource.Id.playquote_container);
-                    var quoteFrag = NoteFragment.NewInstance(selectedNoteId);
 
+                    var quoteFrag = NoteFragment.NewInstance(selectedNoteId);
                     FragmentTransaction ft = FragmentManager.BeginTransaction();
                     ft.Replace(Resource.Id.playquote_container, quoteFrag);
                     ft.AddToBackStack(null);
                     ft.SetTransition(FragmentTransit.FragmentFade);
                     ft.Commit();
+
                 }
             }
             else
@@ -113,6 +114,10 @@ namespace NotesWithFragmentation
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
+            var noteTitle = Activity.FindViewById<EditText>(Resource.Id.textInputEditText1);
+            var noteContent = Activity.FindViewById<EditText>(Resource.Id.textInputEditText2);
+            noteTitle.Text = "";
+            noteContent.Text = "";
             DatabaseService.DeleteNote(NoteCreationId);
             DatabaseToArray.Update();
             Activity.Recreate();
