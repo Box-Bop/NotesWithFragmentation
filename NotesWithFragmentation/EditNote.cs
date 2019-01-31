@@ -34,10 +34,27 @@ namespace NotesWithFragmentation
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            DatabaseService.DeleteNote(editingNoteId);
-            var intent = new Intent(this, typeof(MainActivity))
-                .SetFlags(ActivityFlags.ReorderToFront);
-            StartActivity(intent);
+            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
+            Android.App.AlertDialog alert = dialog.Create();
+            alert.SetTitle("Confirmation");
+            alert.SetMessage("Do you want to delete this note?");
+            alert.SetButton("Delete", (c, ev) =>
+            {
+                DatabaseService.DeleteNote(editingNoteId);
+                var intent = new Intent(this, typeof(MainActivity))
+                    .SetFlags(ActivityFlags.ReorderToFront);
+                StartActivity(intent);
+                MainActivity.forRefresh.Recreate();
+                Finish();
+            });
+            //Just a blank button so that "edit" and "delete" would be on the left and right.
+            alert.SetButton2("\u200B            ", (c, ev) =>
+            {
+            });
+            alert.SetButton3("Cancel", (c, ev) =>
+            {
+            });
+            alert.Show();
         }
 
         private void ConfirmButton_Click(object sender, EventArgs e)
@@ -50,6 +67,7 @@ namespace NotesWithFragmentation
             var intent = new Intent(this, typeof(MainActivity))
                 .SetFlags(ActivityFlags.ReorderToFront);
             StartActivity(intent);
+            Finish();
         }
     }
 }

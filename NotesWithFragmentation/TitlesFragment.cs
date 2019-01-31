@@ -81,7 +81,6 @@ namespace NotesWithFragmentation
                     ft.AddToBackStack(null);
                     ft.SetTransition(FragmentTransit.FragmentFade);
                     ft.Commit();
-
                 }
             }
             else

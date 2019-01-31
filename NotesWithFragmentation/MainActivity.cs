@@ -16,7 +16,7 @@ namespace NotesWithFragmentation
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
     public class MainActivity : AppCompatActivity
     {
-        public static MainActivity forRefrest { get; set; }
+        public static MainActivity forRefresh { get; set; }
         protected override void OnCreate(Bundle savedInstanceState)
         {
             AppCenter.Start("78100d71-17e2-4ecc-b694-9e9630039eac", typeof(Analytics), typeof(Crashes));
@@ -26,7 +26,7 @@ namespace NotesWithFragmentation
             DatabaseService.CreateTableWithData();
             //var notes = DatabaseService.GetAllNotes();
             DatabaseToArray.Update();
-            forRefrest = this;
+            forRefresh = this;
             SetContentView(Resource.Layout.activity_main);
             var floatingButton = FindViewById<Android.Support.Design.Widget.FloatingActionButton>(Resource.Id.fab);
             floatingButton.Click += FloatingButton_Click;

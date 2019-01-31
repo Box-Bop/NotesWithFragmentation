@@ -31,7 +31,7 @@ namespace NotesWithFragmentation
             DatabaseService.AddNote(noteTitle.Text, noteContent.Text);
             noteTitle.Text = "";
             noteContent.Text = "";
-            MainActivity.forRefrest.Recreate();
+            MainActivity.forRefresh.Recreate();
             Finish();
             //var intent = new Intent(this, typeof(MainActivity))
             //    .SetFlags(ActivityFlags.ReorderToFront);
